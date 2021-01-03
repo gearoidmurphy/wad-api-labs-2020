@@ -38,8 +38,7 @@ router.post('/:userName/favourites', (req, res, next) => {
       }
     ).catch(next);
   } else {
-      res.status(401).send("Unable to find user")
-  }
+      res.status(401).send("Unable to find user")}
 });
 
 router.get('/:userName/favourites', (req, res, next) => {
