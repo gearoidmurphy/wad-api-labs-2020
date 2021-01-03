@@ -63,10 +63,17 @@ router.post('/:userName/favourites', async (req, res, next) => {
   const userName = req.params.userName;
   const movie = await movieModel.findByMovieDBId(newFavourite);
   const user = await User.findByUserName(userName);
-  await user.favourites.push(movie._id);
-  await user.save(); 
-  res.status(201).json(user); 
-});
+  if (user.favourites.indexOf(movie._id) == -1) {
+    await user.favourites.push(movie._id);
+    await user.save();
+    res.status(201).json(user);
+
+} else {
+    res.status(401).json({
+        code: 401,
+        msg: 'Duplicate Movie Error'
+    });
+}});
 
 router.get('/:userName/favourites', (req, res, next) => {
   const userName = req.params.userName;
