@@ -1,6 +1,6 @@
 import express from 'express';
 import User from './userModel';
-import movieModel from '../movies/movieModel'
+import movieModel from '../movies/movieModel';
 import jwt from 'jsonwebtoken';
 
 const router = express.Router(); // eslint-disable-line
@@ -57,7 +57,7 @@ router.put('/:id',  (req, res, next) => {
     .then(user => res.json(200, user)).catch(next);
 });
 
-//Add a favourite. No Error Handling Yet. Can add duplicates too!
+//Add a favourite. No Error Handling Yet.
 router.post('/:userName/favourites', async (req, res, next) => {
   const newFavourite = req.body.id;
   const userName = req.params.userName;
