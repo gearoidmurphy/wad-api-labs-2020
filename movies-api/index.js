@@ -9,6 +9,10 @@ import usersRouter from './api/users';
 
 dotenv.config();
 
+if (process.env.SEED_DB) {
+    loadUsers();
+  }
+  
 const errHandler = (err, req, res, next) => {
   /* if the error in development then send stack trace to display whole error,
   if it's in production then just send error message  */
@@ -19,9 +23,6 @@ const errHandler = (err, req, res, next) => {
   res.status(500).send(`Hey!! You caught the error 👍👍, ${err.stack} `);
 };
 
-if (process.env.SEED_DB) {
-    loadUsers();
-  }
 const app = express();
 
 const port = 8080;
