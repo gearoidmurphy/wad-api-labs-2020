@@ -13,6 +13,7 @@ import Credits from "../components/credits";
 
 const MoviePage = props => {
   const { id } = props.match.params;
+  
   const [movie] = useMovie(id)  // NEW
   return (
     <>

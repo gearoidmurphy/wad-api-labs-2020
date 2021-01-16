@@ -21,7 +21,7 @@ export default ({ movie }) => {
         </li>
       </ul>
 
-      {/* <ul className="list-group list-group-horizontal">
+      <ul className="list-group list-group-horizontal">
         <li key="gh" className="list-group-item list-group-item-dark">
           Genres
         </li>
@@ -30,7 +30,7 @@ export default ({ movie }) => {
             {g.name}
           </li>
         ))}
-      </ul> */}
+      </ul>
       <ul className="list-group list-group-horizontal">
         <li key="slh" className="list-group-item list-group-item-dark">
           Spoken Languages

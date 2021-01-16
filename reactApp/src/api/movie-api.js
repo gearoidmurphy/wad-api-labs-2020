@@ -18,9 +18,46 @@ export const signup = (username, password) => {
     }).then(res => res.json())
 };
 
+export const addFavorite = (username, id) => {
+      return fetch(`api/users/${username}/favourites`, {
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        method: 'post',
+        body: JSON.stringify({id: id })
+      }).then(res => res.json())
+    };
+
+export const getSpecificUserFavourites = (username) => {
+      return fetch(
+         `/api/users/${username}/favourites`,{headers: {
+           'Authorization': window.localStorage.getItem('token')
+        }
+      }
+      ).then(res => res.json());
+    };
+  
 export const getMovies = () => {
     return fetch(
        '/api/movies',{headers: {
+         'Authorization': window.localStorage.getItem('token')
+      }
+    }
+    ).then(res => res.json());
+  };
+
+  export const getMovie = id => {
+    return fetch(
+      `/api/movies/:${id}`,{headers: {
+         'Authorization': window.localStorage.getItem('token')
+      }
+    }
+    ).then(res => res.json());
+  };
+
+export const getGenres = () => {
+    return fetch(
+       '/api/genres',{headers: {
          'Authorization': window.localStorage.getItem('token')
       }
     }
@@ -44,3 +81,31 @@ export const getTopRatedMovies = () => {
     }
     ).then(res => res.json());
   };
+
+export const getCredits = () => {
+    return fetch(
+       '/api/movies/:id/credits',{headers: {
+         'Authorization': window.localStorage.getItem('token')
+      }
+    }
+    ).then(res => res.json());
+  };
+  
+export const getsimilarMovies = () => {
+    return fetch(
+       '/api/movies/:id/similars',{headers: {
+         'Authorization': window.localStorage.getItem('token')
+      }
+    }
+    ).then(res => res.json());
+  };
+
+export const getMovieReviews = () => {
+    return fetch(
+       '/:id/reviews',{headers: {
+         'Authorization': window.localStorage.getItem('token')
+      }
+    }
+    ).then(res => res.json());
+  };
+  

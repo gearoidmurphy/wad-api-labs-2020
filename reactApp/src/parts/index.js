@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Redirect, Switch, Link } from "react-router-dom";
 import { PublicPage, Profile } from "../parts/pages";
 import TopRated from "../parts/pages/topRatedMoviesPage"
 import Upcoming from "../parts/pages/upcomingMoviesPage"
+import Favorite from "../parts/pages/favoritesMoviesPage"
 import Movies from "../parts/pages/movieDetailsPage"
 import HomePage from "../parts/pages/homePage"
 import LoginPage from "./loginPage";
@@ -20,26 +21,9 @@ const App = () => {
     <BrowserRouter>
       <AuthProvider>
         <AuthHeader />
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/public">Public</Link>
-          </li>
-          <li>
-            <Link to="/movies">Movies</Link>
-          </li>
-          <li>
-            <Link to="/upcoming">Upcoming Movies</Link>
-          </li>
-          <li>
-            <Link to="/toprated">Top Rated Movies</Link>
-          </li>
-          <li>
-            <Link to="/profile">Profile</Link>
-          </li>
-        </ul>
+        <p>
+          Movie App
+        </p>
         <MovieProvider>
           <GenresProvider>
           <Switch>
@@ -47,7 +31,7 @@ const App = () => {
             <Route path="/login" component={LoginPage} />
             <Route path="/signup" component={SignUpPage} />,
             <Route exact path="/" component={HomePage} />
-            <PrivateRoute path="/movies" component={Movies} />
+            <PrivateRoute path="/favorites" component={Favorite} />
             <PrivateRoute path="/upcoming" component={Upcoming} />
             <PrivateRoute path="/toprated" component={TopRated} />
             <PrivateRoute path="/movies/:id" component={Movies} />
