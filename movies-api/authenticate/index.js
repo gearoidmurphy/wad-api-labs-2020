@@ -1,7 +1,10 @@
+
 import passport from 'passport';
 import passportJWT from 'passport-jwt';
 import UserModel from './../api/users/userModel';
 import dotenv from 'dotenv';
+
+
 
 dotenv.config();
 
@@ -22,3 +25,4 @@ const strategy = new JWTStrategy(jwtOptions, async (payload, next) => {
 passport.use(strategy);
 
 export default passport;
+ 

@@ -1,15 +1,22 @@
 import userModel from '../api/users/userModel';
 import movieModel from '../api/movies/movieModel';
+import upcomingModel from '../api/movies/upcomingMoviesModel';
+import topRatedModel from '../api/movies/topRatedMoviesModel';
 import {movies} from './movies.js';
+import {upcomingMovies} from './upcomingMovies.js';
+import {topRatedMovies} from './topRatedMovies.js';
+
 
 const users = [
   {
     'username': 'user1',
     'password': 'test1',
+    
   },
   {
     'username': 'user2',
     'password': 'test2',
+    
   },
 ];
 
@@ -33,6 +40,29 @@ export async function loadMovies() {
     await movieModel.deleteMany();
     await movieModel.collection.insertMany(movies);
     console.info(`${movies.length} Movies were successfully stored.`);
+  } catch (err) {
+    console.error(`failed to Load movie Data: ${err}`);
+  }
+}
+
+export async function loadUpcomingMovies() {
+  console.log('load seed data');
+  console.log(upcomingMovies.length);
+  try {
+    await upcomingModel.deleteMany();
+    await upcomingModel.collection.insertMany(upcomingMovies);
+    console.info(`${upcomingMovies.length} UpcomingMovies were successfully stored.`);
+  } catch (err) {
+    console.error(`failed to Load movie Data: ${err}`);
+  }
+}
+
+export async function loadTopRatedMovies() {
+  console.log('load seed data');
+  console.log(topRatedMovies.length);
+  try {    await topRatedModel.deleteMany();
+    await topRatedModel.collection.insertMany(topRatedMovies);
+    console.info(`${topRatedMovies.length} topRatedMovies were successfully stored.`);
   } catch (err) {
     console.error(`failed to Load movie Data: ${err}`);
   }

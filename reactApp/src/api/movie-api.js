@@ -26,3 +26,21 @@ export const getMovies = () => {
     }
     ).then(res => res.json());
   };
+
+export const getUpcomingMovies = () => {
+    return fetch(
+       '/api/movies/upcoming',{headers: {
+         'Authorization': window.localStorage.getItem('token')
+      }
+    }
+    ).then(res => res.json());
+  };
+
+export const getTopRatedMovies = () => {
+    return fetch(
+       '/api/movies/toprated',{headers: {
+         'Authorization': window.localStorage.getItem('token')
+      }
+    }
+    ).then(res => res.json());
+  };
