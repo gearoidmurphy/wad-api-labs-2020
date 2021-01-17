@@ -48,7 +48,7 @@ export const getMovies = () => {
 
   export const getMovie = id => {
     return fetch(
-      `/api/movies/:${id}`,{headers: {
+      `/api/movies/${id}`,{headers: {
          'Authorization': window.localStorage.getItem('token')
       }
     }
@@ -82,18 +82,18 @@ export const getTopRatedMovies = () => {
     ).then(res => res.json());
   };
 
-export const getCredits = () => {
+export const getCredits = id => {
     return fetch(
-       '/api/movies/:id/credits',{headers: {
+       `/api/movies/${id}/credits`,{headers: {
          'Authorization': window.localStorage.getItem('token')
       }
     }
     ).then(res => res.json());
   };
   
-export const getsimilarMovies = () => {
+export const getsimilarMovies = id => {
     return fetch(
-       '/api/movies/:id/similars',{headers: {
+       `/api/movies/${id}/similars`,{headers: {
          'Authorization': window.localStorage.getItem('token')
       }
     }

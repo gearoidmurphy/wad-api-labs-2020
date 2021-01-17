@@ -1,10 +1,10 @@
 /* eslint-disable no-undef */
 import usersRouter from './api/users';
-import {loadUsers, loadMovies, loadUpcomingMovies, loadTopRatedMovies} from './seedData';
+import {loadUsers, loadMovies, loadUpcomingMovies, loadTopRatedMovies, loadAllMovies} from './seedData';
 import './db';
 import dotenv from 'dotenv';
 import express from 'express';
-import moviesRouter from './api/movies';
+import moviesRouter from './api/Movies';
 import bodyParser from 'body-parser';
 import session from 'express-session';
 import passport from './authenticate/index';
@@ -28,6 +28,7 @@ if (process.env.SEED_DB) {
   loadMovies();
   loadUpcomingMovies();
   loadTopRatedMovies();
+  loadAllMovies();
 }
 
 app.use(bodyParser.json());
@@ -48,7 +49,7 @@ app.use('/api/movies', moviesRouter);
 app.use('/api/users', usersRouter);
 
 
-app.use(errHandler);
+// app.use(errHandler);
 
 app.listen(port, () => {
   console.info(`Server running at ${port}`);

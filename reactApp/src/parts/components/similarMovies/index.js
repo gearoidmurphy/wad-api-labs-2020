@@ -22,7 +22,7 @@ export default ({ movie }) => {
                 
                 <div className="col-sm-3">
                     <div className="card  bg-white">
-                    <Link to={`/movies/${r.id}`}>
+                    {/* <Link to={`/movies/${r.id}`}> */}
                         <img
                         className="card-img-tag center "
                         alt={r.title}
@@ -32,7 +32,7 @@ export default ({ movie }) => {
                             : "./film-poster-placeholder.png"
                         }
                         />
-                        </Link>
+                        {/* </Link> */}
                         <div className="card-body">
                         <h4 className="card-title ">{r.title}</h4>
                         <p>

@@ -1,10 +1,12 @@
 import userModel from '../api/users/userModel';
-import movieModel from '../api/movies/movieModel';
-import upcomingModel from '../api/movies/upcomingMoviesModel';
-import topRatedModel from '../api/movies/topRatedMoviesModel';
-import {movies} from './movies.js';
+import movieModel from '../api/Movies/movieModel';
+import upcomingModel from '../api/Movies/upcomingMoviesModel';
+import topRatedModel from '../api/Movies/topRatedMoviesModel';
+import allMoviesModel from '../api/Movies/allMoviesModel';
+import {Movies} from './Movies.js';
 import {upcomingMovies} from './upcomingMovies.js';
 import {topRatedMovies} from './topRatedMovies.js';
+import {allMovies} from './allMovies.js';
 
 
 const users = [
@@ -33,18 +35,20 @@ export async function loadUsers() {
     }
   }
 
-  // deletes all movies documents in collection and inserts test data
+  // deletes all Movies documents in collection and inserts test data
 export async function loadMovies() {
   console.log('load seed data');
-  console.log(movies.length);
+  console.log(Movies.length);
   try {
     await movieModel.deleteMany();
-    await movieModel.collection.insertMany(movies);
-    console.info(`${movies.length} Movies were successfully stored.`);
+    await movieModel.collection.insertMany(Movies);
+    console.info(`${Movies.length} Movies were successfully stored.`);
   } catch (err) {
     console.error(`failed to Load movie Data: ${err}`);
   }
 }
+
+
 
 export async function loadUpcomingMovies() {
   console.log('load seed data');
@@ -64,6 +68,17 @@ export async function loadTopRatedMovies() {
   try {    await topRatedModel.deleteMany();
     await topRatedModel.collection.insertMany(topRatedMovies);
     console.info(`${topRatedMovies.length} topRatedMovies were successfully stored.`);
+  } catch (err) {
+    console.error(`failed to Load movie Data: ${err}`);
+  }
+}
+export async function loadAllMovies() {
+  console.log('load seed data');
+  console.log(allMovies.length);
+  try {
+    await allMoviesModel.deleteMany();
+    await allMoviesModel.collection.insertMany(allMovies);
+    console.info(`${allMovies.length} AllMovies were successfully stored.`);
   } catch (err) {
     console.error(`failed to Load movie Data: ${err}`);
   }
