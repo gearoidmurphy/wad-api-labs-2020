@@ -100,9 +100,9 @@ export const getsimilarMovies = id => {
     ).then(res => res.json());
   };
 
-export const getMovieReviews = () => {
+export const getMovieReviews = id => {
     return fetch(
-       '/:id/reviews',{headers: {
+       `/${id}/reviews`,{headers: {
          'Authorization': window.localStorage.getItem('token')
       }
     }

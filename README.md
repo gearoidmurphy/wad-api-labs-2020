@@ -1,43 +1,55 @@
 # Assignment 2 - Web API.
 
-Name: Your Name
+Name: Gearoid Murphy
 
 ## Features.
 
-...... A bullet-point list of the ADDITIONAL features you have implemented in the API **THAT WERE NOT IN THE LABS** ......,
- 
- + Feature 1 - .... a statement of its purpose/objective ..... 
- + Feature 2 - .......
- + Feature 3 = ......
- + etc
- + etc
+
+ + Upcoming Movies Page - Add a Uppcoming Movies database to my movies_api this contains twenty upcoming movies you are able to view the details of these movies 
+ + Top Rated Movies Page - Add a Top Rated Movies database to my movies_api this contains twenty Top Rated movies you are able to view the details of these movies
+ + User Specific Favorites = I created a favorites page which holds each users specific favorites which are stored in the user database withinj each user
+ + Filter controls - These controls allow a user to filter the movies based on what they type in the bar
+ + Movie Details Page - This shows more details on a movie 
+ + Simlar Movies - In the details page it shows other similar movies 
+ + Credits - In the deatails page it shows a list of people who acted in the movie
 
 ## Installation Requirements
 
-Describe what needs to be on the machine to run the API (Node v?, NPM, MongoDB instance, any other 3rd party software not in the package.json). 
-
-Describe getting/installing the software, perhaps:
-
-```bat
-git clone http:\myrepo.git
-```
-
-followed by installation
+Presuming you have MongoDb Is installed 
+You start by making a Db folder This is done by:
 
 ```bat
-git install
+mkdir db
+mongod -dbpath db
 ```
+
+Now you need to install Node.js to your computer you can download this from below:(The LTS Version)
+
+https://nodejs.org/en/download/
+
+Now the Start Up we start by opening a terminal and changing directory to the db folder created above in which you will start Mongod:
+
+```bat
+mongod.exe
+```
+
+Then you need to open a second terminal and open in the downloaded folder and cd into movie_api folder and run:
+
+```bat
+npm install
+npm start
+```
+Then open another terminal and cd into the react_app folder and run the command from above again
+
 
 ## API Configuration
-Describe any configuration that needs to take place before running the API. For example, creating an ``.env`` and what variables to put in it. Give an example of how this might be structured/done.
-REMEMBER: DON'T PUT YOUR OWN USERNAMES/PASSWORDS/AUTH KEYS IN THE README OR ON GITHUB, just placeholders as indicated below:
-
 ```bat
 NODE_ENV=development
 PORT=8080
-HOST=
+HOST=localhost
+REACT_APP_TMDB_KEY=YOURTMBDKEY
 mongoDB=YourMongoURL
-seedDb=true
+SEED_DB=true
 secret=YourJWTSecret
 ```
 
@@ -49,37 +61,51 @@ Give an overview of your web API design, perhaps similar to the following:
 | -- | -- | -- | -- | -- 
 | /api/movies |Gets a list of movies | N/A | N/A |
 | /api/movies/{movieid} | Get a Movie | N/A | N/A | N/A
-| /api/movies/{movieid}/reviews | Get all reviews for movie | Create a new review for Movie | N/A | N/A  
+| /api/movies/{movieid}/reviews | Get all reviews for movie | Create a new review for Movie | N/A | N/A 
+| /api/movies/upcoming |Gets a list of Upcoming movies | N/A | N/A |
+| /api/movies/toprated |Gets a list of Top Rated movies | N/A | N/A |
+| /api/movies/:id/credits |Gets a list of movie credits | N/A | N/A |
+| /api/movies/:id/similars |Gets a list of similar movies |N/A | N/A |
+| /api/users/:username/favourites |Gets the list user specific movies | Posts the movie to users favorites list | N/A |
+| /api/users |posts the username and password and checks if they are in the database | N/A | N/A |
+| /api/users?action=register |posts the username and password and adds them to the database | N/A | N/A |
 | ... | ... | ... | ... | ...
 
 If you have your API design on an online platform or graphic, please link to it (e.g. [Swaggerhub](https://app.swaggerhub.com/)).
 
 
 ## Security and Authentication
-Give details of authentication/ security implemented on the API(e.g. passport/sessions). Indicate which routes are protected.
+
+The user needs to be authenticated to access any page other than the homepage, login and signup  
+
+To get authenticated you have to login in using a valid username and password if you do not have one you can create on in sign up
+
+The Private routes are:
+ + Upcoming Movie Page
+ + Top Rated Movies Page 
+ + Favorites
+ + Movies Details Page
+
 
 ## Integrating with React App
 
-Describe how you integrated your React app with the API. Perhaps link to the React App repo and give an example of an API call from React App. For example: 
+I intergrated my React app from assignmnet 1 this mean't adding a proxy for the port 8080 and changing the app to use my api instead And also intergrating the mongo login system we made in the labs. 
 
 ~~~Javascript
-export const getMovies = () => {
-  return fetch(
-     '/api/movies',{headers: {
-       'Authorization': window.localStorage.getItem('token')
+
+export const getTopRatedMovies = () => {
+    return fetch(
+       '/api/movies/toprated',{headers: {
+         'Authorization': window.localStorage.getItem('token')
+      }
     }
-  }
-  )
-    .then(res => res.json())
-    .then(json => {return json.results;});
-};
+    ).then(res => res.json());
+  };
 
 ~~~
 
 ## Extra features
 
-. . Briefly explain any non-standard features, functional or non-functional, developed for the app.  
-
-## Independent learning.
-
-. . State the non-standard aspects of React/Express/Node (or other related technologies) that you researched and applied in this assignment . .  
+ + Favorites
+ + Simalr Movies
+ + Credits  
